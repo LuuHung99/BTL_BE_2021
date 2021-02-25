@@ -1,0 +1,52 @@
+extends ../layouts/index
+block content
+  if(seed.image=== '')
+    .hero-wrap.hero-bread(style= image)
+      .container
+        .row.no-gutters.slider-text.align-items-center.justify-content-center
+          .col-md-9.ftco-animate.text-center
+            p.breadcrumbs
+              span.mr-2
+                a(href='/') Trang chủ
+              span.mr-2
+                span /
+              span.mr-2
+                a(href='/products/load=z1f7dsf') Nhà cho thuê
+            h1.mb-0.bread= seed.name
+  else
+    .hero-wrap.hero-bread(style= style)
+      .container
+        .row.no-gutters.slider-text.align-items-center.justify-content-center
+          .col-md-9.ftco-animate.text-center
+            p.breadcrumbs
+              span.mr-2
+                a(href='/') Trang chủ
+              span.mr-2
+                span /
+              span.mr-2
+                a(href='/products/load=23djnfVd') Nhà cho thuê
+            h1.mb-0.bread= seed.name
+  section.ftco-section
+    .container
+      .row
+        .col-lg-6.mb-5.ftco-animate
+          a.image-popup(href=seed.image)
+            img.img-fluid(src=seed.image, alt='Colorlib Template')
+        .col-lg-6.product-details.pl-md-5.ftco-animate
+          h3= seed.name
+          .rating.f
+            p.text-left
+              h5
+                span Giá
+              p.text-left.ml-2(style="text-align: justify")=seed.price+'VNĐ'
+              h5
+                span Diện tích
+              p.text-left.ml-2(style="text-align: justify")= seed.area + 'm2'
+              h5
+                span Địa chỉ
+              p.text-left.ml-2(style="text-align: justify")= seed.address
+        .col-lg-12.product-details.pl-md-5.ftco-animate 
+            h5
+              span Thông tin mô tả
+            p
+              p(style="text-align: justify")= seed.information
