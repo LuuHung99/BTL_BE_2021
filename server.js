@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 
 const homeRouter = require('./routes/home.route');
 const productRouter = require('./routes/product.route');
@@ -20,6 +21,7 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload())
 
 const url = 'mongodb+srv://hungnucha123:hung0989231338@cluster0.fm2md.mongodb.net/backend?retryWrites=true&w=majority';
 const options = {
@@ -32,7 +34,7 @@ mongoose
     console.log('Connected');
   })
   .catch((err) => {
-    console.log(err);
+    console.log(err, 'error');
   });
 
 app.use('/', homeRouter);

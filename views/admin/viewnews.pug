@@ -18,10 +18,6 @@ block content
                             .row
                                 .col-sm-8.col-md-8
                                     form(method="POST", onsubmit="return validateForm()")
-                                        .form-group.d-flex
-                                            input#check-1.form-control(type="text", name="name", placeholder='Thêm loại tin tức mới(nếu có)')
-                                            label#error-1.lable-error
-                                            button.btn.btn-primary.ml-2 Thêm
                                 .col-sm-4.col-md-4
                                     a.btn.btn-primary(href="/admin/news/add") Thêm tin tức
                             
@@ -32,7 +28,6 @@ block content
                                 tr
                                     th Tiêu đề
                                     th Miêu tả
-                                    th Ngày đăng
                                     th Tag
                                     th Tác vụ
                             tbody
@@ -40,10 +35,8 @@ block content
                                     tr
                                         td= item.name
                                         td= item.description
-                                        td= item.date
                                         td= item.tag
                                         td
-                                            a(href=`/admin/news/update=${item.id}`).btn.btn-primary Sửa
                                             a.mt-1(href=`/admin/news/delete=${item.id}`).btn.btn-danger Xóa
 
                                                 

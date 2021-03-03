@@ -2,6 +2,7 @@ const Product = require('../models/products.model');
 const Types = require('../models/types.model');
 const News = require('../models/news.model');
 const Auths = require('../models/auth.model');
+const path = require('path');
 
 module.exports = {
   index: async (req, res) => {
@@ -96,18 +97,42 @@ module.exports = {
     await Product.update_product(req.params.id, req.body);
     res.redirect('/admin/views');
   },
+
   user: async (req, res) => {
     res.render('admin/users', {
       users: await Auths.getAll(),
       title: 'Manage Users'
     })
   },
+
   deleteUser: async (req, res) => {
     await Auths.delete(req.params.id);
     res.redirect('/admin/users');
   },
+
+  postNew: async (req, res) => {
+    let image = req.files.image;
+
+    await image.mv(path.resolve(__dirname, '../public/image', image.name), function (err){
+      if (err) console.log(err)
+      News.create_new({...req.body,image: '/image/' + image.name});
+      res.redirect('/admin/news');
+    })
+  },
+
+  deleteNews: async (req, res) => {
+    await News.delete(req.params.id);
+    res.redirect('/admin/news');
+  },
+  
   postCreateProducts: async (req, res) => {
-    await Product.create_product(req.body);
-    res.redirect('/admin/views');
+    let image = req.files.image;
+
+    await image.mv(path.resolve(__dirname, '../public/image', image.name), function (err){
+      if (err) console.log(err)
+     Product.create_product({...req.body,image: '/image/' + image.name});
+      res.redirect('/admin/views');
+    })
+      
   }
 };
